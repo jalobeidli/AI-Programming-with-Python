@@ -1,0 +1,11 @@
+select Genre.Name,Invoice.BillingCountry,count(*) Num_of_invoices
+from Invoice 
+join InvoiceLine 
+on Invoice.InvoiceId = InvoiceLine.InvoiceId
+join Track 
+On InvoiceLine.TrackId = Track.TrackId
+join Genre
+on Track.GenreId = Genre.GenreId
+WHERE BillingCountry = 'Canada'
+GROUP BY Genre.Name,Invoice.BillingCountry
+ORDER BY Num_of_invoices DESC
